@@ -1,0 +1,63 @@
+{
+  "name": "google-gemini-php/laravel",
+  "description": "Google Gemini PHP for Laravel is a supercharged PHP API client that allows you to interact with the Google Gemini AI API",
+  "keywords": ["laravel","php", "gemini", "sdk", "api", "client", "natural", "language", "processing"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fatih AYDIN",
+      "email": "aydinfatih52@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.1.0",
+    "google-gemini-php/client": "^1.0",
+    "guzzlehttp/guzzle": "^7.8.1",
+    "laravel/framework": "^9.46.0|^10.34.2|^11.0"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.13.6",
+    "pestphp/pest": "^2.27.0",
+    "pestphp/pest-plugin-arch": "^2.4.1",
+    "phpstan/phpstan": "^1.10.47",
+    "symfony/var-dumper": "^6.4.0|^7.0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gemini\\Laravel\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Gemini\\Laravel\\ServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "pint -v",
+    "test:lint": "pint --test -v",
+    "test:types": "phpstan analyse --ansi",
+    "test:unit": "pest --colors=always",
+    "test": [
+      "@test:lint",
+      "@test:types",
+      "@test:unit"
+    ]
+  }
+}
