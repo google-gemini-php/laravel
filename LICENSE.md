@@ -1,4 +1,4 @@
-IT License
+MIT License
 
 Copyright (c) 2023 Google Gemini PHP
 
