@@ -12,6 +12,8 @@
 
 - Fatih AYDIN [github.com/aydinfatih](https://github.com/aydinfatih)
 
+For more information, take a look at the [google-gemini-php/client](https://github.com/google-gemini-php/client) repository.
+
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Setup](#setup)
