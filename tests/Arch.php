@@ -11,6 +11,7 @@ test('facades')
         'Gemini\Contracts\ResponseContract',
         'Gemini\Laravel\Testing\GeminiFake',
         'Gemini\Responses\StreamResponse',
+        'Gemini\Enums\ModelType',
     ]);
 
 test('service providers')

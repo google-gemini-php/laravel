@@ -25,6 +25,7 @@ For more information, take a look at the [google-gemini-php/client](https://gith
         - [Text-and-image Input](#text-and-image-input)
         - [Multi-turn Conversations (Chat)](#multi-turn-conversations-chat)
         - [Stream Generate Content](#stream-generate-content)
+        - [Structured Output](#structured-output)
         - [Count tokens](#count-tokens)
         - [Configuration](#configuration)
     - [Embedding Resource](#embedding-resource)
@@ -144,6 +145,57 @@ $stream = Gemini::geminiPro()
 foreach ($stream as $response) {
  echo $response->text();
 }
+```
+
+
+#### Structured Output
+Gemini generates unstructured text by default, but some applications require structured text. For these use cases, you can constrain Gemini to respond with JSON, a structured data format suitable for automated processing. You can also constrain the model to respond with one of the options specified in an enum.
+
+```php
+$result = Gemini::geminiFlash()
+ ->withGenerationConfig(
+  generationConfig: new GenerationConfig(
+   responseMimeType: ResponseMimeType::APPLICATION_JSON,
+   responseSchema: new Schema(
+    type: DataType::ARRAY,
+    items: new Schema(
+     type: DataType::OBJECT,
+     properties: [
+      "recipe_name" => new Schema(type: DataType::STRING),
+      "cooking_time_in_minutes" => new Schema(type: DataType::INTEGER)
+     ]
+    )
+   )
+  )
+ )
+ ->generateContent("List 5 popular cookie recipes with cooking time");
+
+
+$result->json();
+
+//[
+//    {
+//      +"cooking_time_in_minutes": 10,
+//      +"recipe_name": "Chocolate Chip Cookies",
+//    },
+//    {
+//      +"cooking_time_in_minutes": 12,
+//      +"recipe_name": "Oatmeal Raisin Cookies",
+//    },
+//    {
+//      +"cooking_time_in_minutes": 10,
+//      +"recipe_name": "Peanut Butter Cookies",
+//    },
+//    {
+//      +"cooking_time_in_minutes": 10,
+//      +"recipe_name": "Snickerdoodles",
+//    },
+//    {
+//      +"cooking_time_in_minutes": 12,
+//      +"recipe_name": "Sugar Cookies",
+//    },
+//  ]
+
 ```
 
 #### Count tokens
