@@ -10,7 +10,7 @@ use Gemini\Laravel\Testing\GeminiFake;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Gemini\Resources\GenerativeModel generativeModel(ModelType $model)
+ * @method static \Gemini\Resources\GenerativeModel generativeModel(ModelType|string $model)
  * @method static \Gemini\Resources\GenerativeModel geminiPro()
  * @method static \Gemini\Resources\GenerativeModel geminiProVision()
  * @method static \Gemini\Resources\GenerativeModel embeddingModel(ModelType $model = ModelType::EMBEDDING)
