@@ -87,7 +87,7 @@ Starting 2.0 release this package will work only with Gemini v1beta API ([see AP
 To update, run this command:
 
 ```bash
-composer require google-gemini-php/client:^2.0
+composer require google-gemini-php/laravel:^2.0
 ```
 
 This release introduces support for new features:
