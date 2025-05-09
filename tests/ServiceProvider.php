@@ -43,6 +43,8 @@ it('requires an api key', function () {
     $app->bind('config', fn () => new Repository([]));
 
     (new ServiceProvider($app))->register();
+
+    $app->get(Client::class);
 })->throws(
     MissingApiKey::class,
     'The Gemini API Key is missing. Please publish the [gemini.php] configuration file and set the [api_key].',
@@ -59,6 +61,8 @@ it('validates base url', function () {
     ]));
 
     (new ServiceProvider($app))->register();
+
+    $app->get(Client::class);
 })->throws(
     InvalidArgumentException::class,
     'Invalid Gemini API base URL.',
