@@ -35,7 +35,7 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
 
             $client = Gemini::factory()
                 ->withApiKey(apiKey: $apiKey)
-                ->withHttpClient(client: new GuzzleClient(['timeout' => config('gemini.request_timeout', 30)]));
+                ->withHttpClient(client: new GuzzleClient(['timeout' => config()->integer('gemini.request_timeout', 30)]));
 
             if (! empty($baseURL)) {
                 $client->withBaseUrl(baseUrl: $baseURL);
