@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Gemini\Laravel\Facades;
 
 use BackedEnum;
-use Gemini\Contracts\ResponseContract;
 use Gemini\Laravel\Testing\GeminiFake;
 use Illuminate\Support\Facades\Facade;
 
@@ -27,7 +26,7 @@ final class Gemini extends Facade
     }
 
     /**
-     * @param  array<array-key, ResponseContract>  $responses
+     * @param  array<array-key, mixed>  $responses
      */
     public static function fake(array $responses = []): GeminiFake
     {
