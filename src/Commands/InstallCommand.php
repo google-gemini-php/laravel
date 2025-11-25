@@ -15,6 +15,10 @@ class InstallCommand extends Command
         'Gemini PHP Docs' => 'https://github.com/google-gemini-php/client#readme',
     ];
 
+    private const FUNDING_LINKS = [
+        'Sponsor Fatih' => 'https://github.com/sponsors/aydinfatih',
+    ];
+
     protected $signature = 'gemini:install';
 
     protected $description = 'Prepares the Gemini client for use.';
@@ -127,6 +131,7 @@ class InstallCommand extends Command
     {
         $links = [
             ...self::LINKS,
+            ...rand(0, 1) ? self::FUNDING_LINKS : array_reverse(self::FUNDING_LINKS, true),
         ];
 
         foreach ($links as $message => $link) {
