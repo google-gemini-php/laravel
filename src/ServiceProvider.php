@@ -33,9 +33,12 @@ final class ServiceProvider extends BaseServiceProvider implements DeferrablePro
                 throw new InvalidArgumentException('Invalid Gemini API base URL.');
             }
 
+            /** @var int $timeout */
+            $timeout = config('gemini.request_timeout', 30);
+
             $client = Gemini::factory()
                 ->withApiKey(apiKey: $apiKey)
-                ->withHttpClient(client: new GuzzleClient(['timeout' => config()->integer('gemini.request_timeout', 30)]));
+                ->withHttpClient(client: new GuzzleClient(['timeout' => (int) $timeout]));
 
             if (! empty($baseURL)) {
                 $client->withBaseUrl(baseUrl: $baseURL);
