@@ -17,8 +17,8 @@
   "require-dev": {
     "guzzlehttp/guzzle": "^7.8.1",
     "laravel/pint": "^1.13.6",
-    "pestphp/pest": "^2.27.0",
-    "pestphp/pest-plugin-arch": "^2.4.1",
+    "pestphp/pest": "^2.36|^3.8|^4.1",
+    "pestphp/pest-plugin-arch": "^2.7|^3.1|^4.0",
     "phpstan/phpstan": "^1.10.47",
     "symfony/var-dumper": "^6.4.0|^7.0.1"
   },
