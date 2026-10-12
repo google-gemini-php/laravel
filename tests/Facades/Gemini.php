@@ -3,7 +3,13 @@
 use Gemini\Enums\ModelType;
 use Gemini\Laravel\Facades\Gemini;
 use Gemini\Laravel\ServiceProvider;
+use Gemini\Resources\CachedContents;
+use Gemini\Resources\ChatSession;
+use Gemini\Resources\EmbeddingModel;
+use Gemini\Resources\Files;
+use Gemini\Resources\FileSearchStores;
 use Gemini\Resources\GenerativeModel;
+use Gemini\Resources\Models;
 use Gemini\Responses\GenerativeModel\GenerateContentResponse;
 use Illuminate\Config\Repository;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -24,6 +30,28 @@ it('resolves resources', function () {
     $generativeModel = Gemini::geminiPro();
 
     expect($generativeModel)->toBeInstanceOf(GenerativeModel::class);
+});
+
+it('resolves all resources', function () {
+    $app = app();
+
+    $app->bind('config', fn () => new Repository([
+        'gemini' => [
+            'api_key' => 'test',
+        ],
+    ]));
+
+    (new ServiceProvider($app))->register();
+
+    Gemini::setFacadeApplication($app);
+
+    expect(Gemini::generativeModel('gemini-2.5-flash'))->toBeInstanceOf(GenerativeModel::class)
+        ->and(Gemini::embeddingModel('gemini-embedding-001'))->toBeInstanceOf(EmbeddingModel::class)
+        ->and(Gemini::models())->toBeInstanceOf(Models::class)
+        ->and(Gemini::chat('gemini-2.5-flash'))->toBeInstanceOf(ChatSession::class)
+        ->and(Gemini::files())->toBeInstanceOf(Files::class)
+        ->and(Gemini::cachedContents())->toBeInstanceOf(CachedContents::class)
+        ->and(Gemini::fileSearchStores())->toBeInstanceOf(FileSearchStores::class);
 });
 
 test('fake returns the given response', function () {
